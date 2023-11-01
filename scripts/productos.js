@@ -1,5 +1,6 @@
 
-export let productos = [
+
+let productos = [
     {
       nombre: "Hamburguesa simple",
       costo: 20,
