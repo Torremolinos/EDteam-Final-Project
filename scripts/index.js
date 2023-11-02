@@ -4,7 +4,7 @@ const usuario = {
   edad: 34,
   deuda: 0,
 };
-
+let ventasRealizadas= 0;
 let pedido = [];
 let costoPedido = 0;
 const mostrarMenu = () => {
@@ -58,8 +58,38 @@ const calcularCosto = () => {
 //no va a necesitar datos de entrada.
 //Pero por si las moscas como siempre debemos ver que pidio algo.
 const finalizarPedido = () => {
-calcularCosto();
-
-pedido = [];
-costoPedido = 0;
+  calcularCosto();
+  //estamos buscando la deuda, y le damos que el precio de esa deuda sea el costo del pedido.
+  usuario.deuda = costoPedido;
+  pedido = [];
+  costoPedido = 0;
+  // aqui le mandamos un mensaje y que necesita pagar esto antes de poder irse.
+  return `${usuario.nombre}, debes pagar ${usuario.deuda}€`;
 };
+
+//le vamos a pedir le monto como parametro. El monto del usuario
+const pagarPedido = (montoEntregado) => {
+  if (montoEntregado < usuario.deuda) {
+    return `No te alcanza para pagar el pedido.`;
+  } else if (montoEntregado === usuario.deuda) {
+    ventasRealizadas++;
+    //es importante que si ha pagado la deuda nosotros la dejemos a cero.
+    usuario.deuda = 0;
+    return `Tu pedido ha sido pagado`;
+  } else {
+    //lo mismo que arriba. Comprobar que dejamos la deuda a cero.
+    usuario.deuda = 0;
+    ventasRealizadas++;
+    return `Tu pedido ha sido pagado y tu cambio es de ${
+      montoEntregado - usuario.deuda
+    }`;
+  }
+ 
+  //tenemos 3 validaciones. Podemos elegir entre switch y if else.
+};
+
+const montoTotal = () => {
+  const totalVentas =  ventasRealizadas;
+  return `Has realizado: ${ventasRealizadas} ventas`
+};
+montoTotal();

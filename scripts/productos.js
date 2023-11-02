@@ -1,4 +1,6 @@
-
+/**
+ * Listado de todos los productos del menu del resturante.
+ */
 
 let productos = [
     {
