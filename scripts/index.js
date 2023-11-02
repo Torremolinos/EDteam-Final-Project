@@ -4,7 +4,7 @@ const usuario = {
   edad: 34,
   deuda: 0,
 };
-let ventasRealizadas= 0;
+let ventasRealizadas = 0;
 let pedido = [];
 let costoPedido = 0;
 const mostrarMenu = () => {
@@ -69,6 +69,7 @@ const finalizarPedido = () => {
 
 //le vamos a pedir le monto como parametro. El monto del usuario
 const pagarPedido = (montoEntregado) => {
+  if (typeof montoEntregado != Number) return `Ingresa un numero`;
   if (montoEntregado < usuario.deuda) {
     return `No te alcanza para pagar el pedido.`;
   } else if (montoEntregado === usuario.deuda) {
@@ -84,12 +85,12 @@ const pagarPedido = (montoEntregado) => {
       montoEntregado - usuario.deuda
     }`;
   }
- 
+
   //tenemos 3 validaciones. Podemos elegir entre switch y if else.
 };
 
 const montoTotal = () => {
-  const totalVentas =  ventasRealizadas;
-  return `Has realizado: ${ventasRealizadas} ventas`
+  const totalVentas = ventasRealizadas;
+  return `Has realizado: ${ventasRealizadas} ventas`;
 };
 montoTotal();
